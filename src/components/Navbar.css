@@ -1,0 +1,71 @@
+/* src/components/Navbar.css */
+.navbar {
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-section {
+  flex: 1;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navbar-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-logo {
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+
+.logo-image {
+  height: 50px;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  color: #ffcc00;
+}
+
+/* Cart badge styling */
+.cart-badge {
+  background: #ff4d4f;
+  color: #fff;
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  position: absolute;
+  top: -8px;
+  right: -12px;
+}

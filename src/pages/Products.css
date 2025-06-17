@@ -1,0 +1,34 @@
+/* src/pages/Products.css */
+.products-page {
+    padding: 2rem;
+    background: #f8f9fa;
+    min-height: 80vh;
+  }
+  
+  .products-page h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #1e3c72;
+  }
+  
+  .search-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .search-filter input,
+  .search-filter select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .products-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  

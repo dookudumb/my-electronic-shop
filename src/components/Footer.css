@@ -1,0 +1,38 @@
+/* src/components/Footer.css */
+.footer {
+    background: #1e1e1e;
+    color: #fff;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .footer div {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .footer p {
+    margin: 0.3rem 0;
+  }
+  
+  .social-media {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+  }
+  
+  .social-media li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .social-media li a:hover {
+    color: #ffcc00;
+  }
+  
