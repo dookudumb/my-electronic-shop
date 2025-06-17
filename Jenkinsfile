@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:18' // Use a Docker image (adjust for your stack)
+        }
+    }
 
     environment {
         DOCKER_REGISTRY = 'uat-machine:5000'
