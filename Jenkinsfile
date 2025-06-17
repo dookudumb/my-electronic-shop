@@ -1,24 +1,61 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18' // Use a Docker image (adjust for your stack)
-        }
+    agent any
+
+    environment {
+        DOCKER_REGISTRY = 'uat-machine:5000'
+        IMAGE_NAME = 'myapp'
+        IMAGE_TAG = 'latest'
     }
+
     stages {
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t myapp:latest .'
+                script {
+                    try {
+                        sh "docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ."
+                    } catch (error) {
+                        echo "Docker build failed: ${error}"
+                        throw error
+                    }
+                }
             }
         }
+
         stage('Test') {
             steps {
-                sh 'docker run --rm myapp:latest npm test'
+                script {
+                    try {
+                        sh "docker run --rm ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} npm test"
+                    } catch (error) {
+                        echo "Tests failed: ${error}"
+                        throw error
+                    }
+                }
             }
         }
+
         stage('Deploy') {
             steps {
-                sh 'docker push uat-machine:5000/myapp:latest'
+                script {
+                    try {
+                        withDockerRegistry([ credentialsId: "docker-registry-creds", url: "http://${DOCKER_REGISTRY}" ]) {
+                            sh "docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+                        }
+                    } catch (error) {
+                        echo "Deploy failed: ${error}"
+                        throw error
+                    }
+                }
             }
+        }
+    }
+
+    post {
+        failure {
+            echo 'Pipeline failed! Sending notification...'
+        }
+        cleanup {
+            sh 'docker system prune -f'
         }
     }
 }
